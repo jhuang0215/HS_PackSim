@@ -1,4 +1,4 @@
-
+const React = require('react');
 
 class Toggle extends React.Component {
     constructor(props) {
