@@ -5,13 +5,14 @@ const React = require('react');
 class Form extends React.Component {
     constructor(props){
         super(props);
+        this.handleToggle = this.handleToggle.bind(this);
         this.state={
             formInput: {
-                sets: [],
-                classes: [],
-                races: [],
-                qualities:[],
-                types: []
+                sets: {},
+                classes: {},
+                races: {},
+                qualities:{},
+                types: {}
             }            
         };
 
@@ -66,6 +67,36 @@ class Form extends React.Component {
             {name: "Minion"}            
         ];
     }
+
+    handleToggle(item, type) {
+        console.log(item);
+        console.log(type);
+        let boxInput = this.state.formInput;
+        switch(type){
+            case 'sets':
+                boxInput.sets[item.name] ? delete boxInput.sets[item.name] : boxInput.sets[item.name] = true;
+                break;
+            case 'classes':
+                boxInput.classes[item.name] ? delete boxInput.classes[item.name] : boxInput.classes[item.name] = true;
+                break;
+            case 'races':
+                boxInput.races[item.name] ? delete boxInput.races[item.name] : boxInput.races[item.name] = true;
+                break;
+            case 'qualities':
+                boxInput.qualities[item.name] ? delete boxInput.qualities[item.name] : boxInput.qualities[item.name] = true;
+                break;
+            case 'types':
+                boxInput.types[item.name] ? delete boxInput.types[item.name] : boxInput.types[item.name] = true;
+                break;
+            default:
+                console.log('Error toggling form box');
+        }
+        console.log(boxInput);
+        this.setState({
+            formInput: boxInput
+        });
+    }
+
     render(){
         return(
             <div className="hearthpack-form">
@@ -76,7 +107,7 @@ class Form extends React.Component {
                             return(
                                 <div key={item.name}>                                
                                     {item.name}
-                                    <input type="checkbox" value={item.name} />
+                                    <input type="checkbox" value={item.name} onClick={() => this.handleToggle(item, 'sets')}/>
                                 </div>
                             );
                         })}
@@ -89,7 +120,7 @@ class Form extends React.Component {
                             return(
                                 <div key={item.name}>                                
                                     {item.name}
-                                    <input type="checkbox" value={item.name} />
+                                    <input type="checkbox" value={item.name} onClick={() => this.handleToggle(item, 'classes')}/>
                                 </div>
                             );
                         })}
@@ -102,7 +133,7 @@ class Form extends React.Component {
                             return(
                                 <div key={item.name}>                                
                                     {item.name}
-                                    <input type="checkbox" value={item.name} />
+                                    <input type="checkbox" value={item.name} onClick={() => this.handleToggle(item,'races')}/>
                                 </div>
                             );
                         })}
@@ -115,7 +146,7 @@ class Form extends React.Component {
                             return(
                                 <div key={item.name}>                                
                                     {item.name}
-                                    <input type="checkbox" value={item.name} />
+                                    <input type="checkbox" value={item.name} onClick={() => this.handleToggle(item, 'qualities')}/>
                                 </div>
                             );
                         })}
@@ -128,11 +159,14 @@ class Form extends React.Component {
                             return(
                                 <div key={item.name}>                                
                                     {item.name}
-                                    <input type="checkbox" value={item.name} />
+                                    <input type="checkbox" value={item.name}onClick={() => this.handleToggle(item, 'types')}/>
                                 </div>
                             );
                         })}
                     </div>
+                </div>
+                <div>
+                    <button type="button">Hue</button>
                 </div>
             </div>
         );
