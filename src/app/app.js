@@ -3,6 +3,9 @@ const ReactDOM = require('react-dom');
 
 require('./assets/css/main.css');
 
+// Module require
+const Form = require('./form.js');
+
 //Create component
 class HearthPacks extends React.Component {
     constructor(props) {
@@ -36,6 +39,9 @@ class HearthPacks extends React.Component {
                         </div>                        
                     </div>
                 </nav>
+                <div className="container">
+                    <Form />
+                </div>                
             </div>
         );
     }
