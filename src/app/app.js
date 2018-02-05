@@ -1,5 +1,6 @@
 const React = require('react');
 const ReactDOM = require('react-dom');
+const unirest = require('unirest');
 
 require('./assets/css/main.css');
 
@@ -11,8 +12,42 @@ class HearthPacks extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            formInput: {
+                sets: {},
+                classes: {},
+                races: {},
+                qualities:{},
+                types: {}
+            },
+            cardList: []
         };
+    }
+
+    callAPI(){
+        let cardRequest = [];
+        let formData = this.state.formInput;
+        let formDataKeys = Object.keys(formData);
+        let setList = Object.keys(formData.sets),
+            classList = Object.keys(formData.classes),
+            raceList = Object.keys(formData.races),
+            qualityList = Object.keys(formData.qualities),
+            typeList = Object.keys(formData.types);
+
+        if(qualityList.length > 0){            
+            unirest.get("https://omgvamp-hearthstone-v1.p.mashape.com/cards/qualities/" + qualityList[0] + "?collectible=1")
+            .header("X-Mashape-Key", "e14Zy82oAUmsh5BuvIgPgmmuMnvTp16KghljsnbXiOJgMeJ7Iz")            
+            .end(function (result) {
+            console.log(result.status, result.headers, result.body);            
+            });
+        }
+    }
+
+    formInputHandler(inputData) {
+        this.setState({
+            formInput: inputData
+        }, function(){
+            this.callAPI();
+        });        
     }
 
     render() {
@@ -40,7 +75,7 @@ class HearthPacks extends React.Component {
                     </div>
                 </nav>
                 <div className="container">
-                    <Form />
+                    <Form clickHandler={this.formInputHandler.bind(this)}/>
                 </div>                
             </div>
         );
