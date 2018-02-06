@@ -3,6 +3,7 @@ const ReactDOM = require('react-dom');
 const unirest = require('unirest');
 
 require('./assets/css/main.css');
+const config = require('./config.js');
 
 // Module require
 const Form = require('./form.js');
@@ -13,33 +14,72 @@ class HearthPacks extends React.Component {
         super(props);
         this.state = {
             formInput: {
-                sets: {},
-                classes: {},
+                types: {},
+                qualities: {},
+                class: {},
                 races: {},
-                qualities:{},
-                types: {}
+                sets: {}
             },
             cardList: []
         };
     }
 
-    callAPI(){
+    // Custom function
+    apiRequestPromise(paramList, formKey){
+        return new Promise(function(resolve, reject){
+            unirest.get("https://omgvamp-hearthstone-v1.p.mashape.com/cards/" + formKey + "/" + paramList + "?collectible=1")
+            .header("X-Mashape-Key", config.api_key)
+            .end(function (result) {
+                console.log(formKey, paramList);
+                console.log(result.status, result.headers, result.body);
+
+                if(result.status === 200){
+                    resolve(result.body);
+                } else {
+                    reject(result.body);
+                }
+                // apiResult = apiResult.concat(result.body);
+            });
+        });
+    }
+
+    callAPI(){        
         let cardRequest = [];
         let formData = this.state.formInput;
-        let formDataKeys = Object.keys(formData);
-        let setList = Object.keys(formData.sets),
-            classList = Object.keys(formData.classes),
-            raceList = Object.keys(formData.races),
-            qualityList = Object.keys(formData.qualities),
-            typeList = Object.keys(formData.types);
+        
+        // Get all the key values in an array ex ["types", "qualities", ...]
+        let formKeys = Object.keys(formData); 
+        
+        // Take the checked parameters in each key and order them into arrays [["Spell", "Minion", "Weapon"], ["Legendary"], ...]
+        let getListWithKey = function(item, index, formData){
+            return Object.keys(formData[item]);
+        };
+        let paramLists = formKeys.map((item, index) => getListWithKey(item, index, formData));
+        console.log(paramLists);
 
-        if(qualityList.length > 0){            
-            unirest.get("https://omgvamp-hearthstone-v1.p.mashape.com/cards/qualities/" + qualityList[0] + "?collectible=1")
-            .header("X-Mashape-Key", "e14Zy82oAUmsh5BuvIgPgmmuMnvTp16KghljsnbXiOJgMeJ7Iz")            
-            .end(function (result) {
-            console.log(result.status, result.headers, result.body);            
-            });
+        // Check card request parameters and call the API for the highest priority paremeter to minimize API calls 
+        // (ex. there are only 3 types of cards so maximum 3 calls compare to 14 expansion sets)
+        // then filter the list with the rest of the parameters
+        let apiResult = [];
+        for(let i = 0; i < paramLists.length; i++){
+            if(paramLists[i].length > 0){
+                // make api request for all the cards in the key value
+                // for(let j = 0; j < paramLists[i].length; j++){
+                //     unirest.get("https://omgvamp-hearthstone-v1.p.mashape.com/cards/" + formKeys[i]+ "/" + paramLists[i][j] + "?collectible=1")
+                //     .header("X-Mashape-Key", config.api_key)
+                //     .end(function (result) {
+                //         console.log(formKeys[i], paramLists[i][j]);
+                //         console.log(result.status, result.headers, result.body);
+                //         apiResult = apiResult.concat(result.body);
+                //     });                    
+                // }
+                let requests = paramLists[i].map((item) => this.apiRequestPromise(item, formKeys[i]));                
+                Promise.all(requests).then((apiResults) => console.log(apiResults));
+                break;
+            }
         }
+
+        // paramLists.map();
     }
 
     formInputHandler(inputData) {

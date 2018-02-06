@@ -7,12 +7,12 @@ class Form extends React.Component {
         super(props);
         this.handleToggle = this.handleToggle.bind(this);
         this.state={
-            formInput: {
-                sets: {},
-                classes: {},
+            formInput: {                
+                types: {},
+                qualities: {},
+                class: {},
                 races: {},
-                qualities:{},
-                types: {}
+                sets: {}
             }            
         };
 
