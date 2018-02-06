@@ -7,12 +7,12 @@ class Form extends React.Component {
         super(props);
         this.handleToggle = this.handleToggle.bind(this);
         this.state={
-            formInput: {
-                sets: {},
+            formInput: {                
+                types: {},
+                qualities: {},
                 classes: {},
                 races: {},
-                qualities:{},
-                types: {}
+                sets: {}
             }            
         };
 
@@ -159,14 +159,14 @@ class Form extends React.Component {
                             return(
                                 <div key={item.name}>                                
                                     {item.name}
-                                    <input type="checkbox" value={item.name}onClick={() => this.handleToggle(item, 'types')}/>
+                                    <input type="checkbox" value={item.name} onClick={() => this.handleToggle(item, 'types')}/>
                                 </div>
                             );
                         })}
                     </div>
                 </div>
                 <div>
-                    <button type="button">Hue</button>
+                    <button type="button" onClick={() => this.props.clickHandler(this.state.formInput)}>Save</button>
                 </div>
             </div>
         );
