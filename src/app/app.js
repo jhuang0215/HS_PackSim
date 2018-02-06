@@ -1,3 +1,5 @@
+import { fail } from 'assert';
+
 const React = require('react');
 const ReactDOM = require('react-dom');
 const unirest = require('unirest');
@@ -22,6 +24,9 @@ class HearthPacks extends React.Component {
             },
             cardList: []
         };
+        
+        // This is to read the json objects returned from API call
+        this.cardKeyJSON = ['type', 'rarity', 'playerClass', 'race', 'cardSet'];     
     }
 
     // Custom function
@@ -38,9 +43,24 @@ class HearthPacks extends React.Component {
                 } else {
                     reject(result.body);
                 }
-                // apiResult = apiResult.concat(result.body);
             });
         });
+    }
+
+    filterCardResults(cardResults, paramList, paramkeys){
+        let mergedResult = [].concat.apply([], cardResults);
+        console.log(mergedResult);
+        let filtertedResult = mergedResult.filter(card => {
+            for(let i = 0; i < paramList.length; i++){
+                for(let j = 0; j < paramList[i].length; j++){
+                    if(card[paramkeys[i]] !== paramList[i][j]){
+                        return false;
+                    }
+                }
+            }
+            return true;
+        });
+        this.setState({cardList: filtertedResult});
     }
 
     callAPI(){        
@@ -63,23 +83,13 @@ class HearthPacks extends React.Component {
         let apiResult = [];
         for(let i = 0; i < paramLists.length; i++){
             if(paramLists[i].length > 0){
-                // make api request for all the cards in the key value
-                // for(let j = 0; j < paramLists[i].length; j++){
-                //     unirest.get("https://omgvamp-hearthstone-v1.p.mashape.com/cards/" + formKeys[i]+ "/" + paramLists[i][j] + "?collectible=1")
-                //     .header("X-Mashape-Key", config.api_key)
-                //     .end(function (result) {
-                //         console.log(formKeys[i], paramLists[i][j]);
-                //         console.log(result.status, result.headers, result.body);
-                //         apiResult = apiResult.concat(result.body);
-                //     });                    
-                // }
                 let requests = paramLists[i].map((item) => this.apiRequestPromise(item, formKeys[i]));                
-                Promise.all(requests).then((apiResults) => console.log(apiResults));
+                Promise.all(requests)
+                    .then((apiResults) => this.filterCardResults(apiResults, paramLists.slice(i + 1), this.cardKeyJSON.slice(i + 1)))
+                    .catch((error) => console.log(error));
                 break;
             }
         }
-
-        // paramLists.map();
     }
 
     formInputHandler(inputData) {

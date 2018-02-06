@@ -10,7 +10,7 @@ class Form extends React.Component {
             formInput: {                
                 types: {},
                 qualities: {},
-                class: {},
+                classes: {},
                 races: {},
                 sets: {}
             }            
