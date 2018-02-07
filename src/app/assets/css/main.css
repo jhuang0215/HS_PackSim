@@ -8,8 +8,13 @@ body {
     position: relative;
 }
 
+#hearthpack-wrapper {
+    height: 100%;
+}
+
 .content-container{
     background: url('../app/assets/img/body-content-bg.jpg') 60% 0 repeat-y;
+    height: 100%;
 }
 
 /* Navigation Bar */
@@ -24,6 +29,7 @@ body {
     border: 0;
 }
 .navbar-header{
+    color: #fff;
     margin: 0;
     float: left;
     position: relative;
@@ -46,6 +52,7 @@ body {
     padding-left: 0;        
 }
 .navbar-right{
+    position: relative;
     float: right!important;
     /* margin-right: -15px; */
 }
@@ -119,7 +126,83 @@ body {
     border-color: rgba(0,0,0,0.2);
 }
 
-.container {
+/* Form Select */
+.hearthpack-form{
+    display: block;
+    position: relative;
+    min-height: 50px;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    border-radius: 0%;
+    text-align: center;
+    /* background-color: #251d18; */
+    box-shadow: 0 0 12px rgba(0,0,0,.4);
+    border: 0;
+}
+.select-box {
+    display: inline-block;
+    margin-right: 5px;
+}
+.dropdown-item .select-background {
+    float: right;
+    height: 10px;
+}
+.opaque-label {
+    height: 100%;
+    width: 100%;
+    background: rgba(0, 0, 0, .2)
+}
+.submit-button {
+    display: inline-block;
+    height: 10px;
+    position: relative;
+}
+
+/* Pack Sim */
+.packsim-container{
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    position: relative;
+    padding: 10px
+}
+.packsim-wrapper {
+    background: url('../app/assets/img/packsim-bg.png');
+    border-radius: 10px;
+}
+.pack-topper {
+    margin-top: 10px;
+    padding-left: 15px;
+    color: #fff;
+    font-size: 20px;
+    line-height: 52px;
+    border-radius: 10px 10px 0 0;
+    background: rgba(0,0,0,0.35);
+    font-family: 'Open Sans Condensed',sans-serif;
+    font-weight: bold;
+}
+
+.pack-results {
+    padding: 30px 15px;
+    list-style: none;
+    list-style-image: none;
+    margin: 0;
+
+}
+
+ul.pack-results li.card-slot:not(:last-child) {
+    margin-right: 20px;
+}
+li.card-slot {
+    /* position: relative; */
+    width: 170px;
+    height: 240px;
+    float: left;
+    cursor: pointer;
+}
+
+/* .container {
     padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
@@ -129,9 +212,9 @@ body {
     clear: both;
     content: "";
     display: block;
-} 
+}  */
 
-/* Media Queries */
+/* Media Queries
 @media (min-width: 1200px){
     .container{
         width: 1170px;
@@ -146,4 +229,4 @@ body {
     .container{
         width: 750px;    
     }
-}
+} */
