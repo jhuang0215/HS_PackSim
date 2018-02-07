@@ -9,6 +9,7 @@ const config = require('./config.js');
 
 // Module require
 const Form = require('./form.js');
+const PackOpen = require('./packOpen.js');
 
 //Create component
 class HearthPacks extends React.Component {
@@ -126,6 +127,7 @@ class HearthPacks extends React.Component {
                 </nav>
                 <div className="container">
                     <Form clickHandler={this.formInputHandler.bind(this)}/>
+                    <PackOpen cardList={this.state.cardList} />
                 </div>                
             </div>
         );
