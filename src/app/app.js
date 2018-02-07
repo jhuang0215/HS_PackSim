@@ -125,7 +125,7 @@ class HearthPacks extends React.Component {
                         </div>                        
                     </div>
                 </nav>
-                <div className="container">
+                <div className="container content-container">
                     <Form clickHandler={this.formInputHandler.bind(this)}/>
                     <PackOpen cardList={this.state.cardList} />
                 </div>                

@@ -1,9 +1,15 @@
 body {
     font-family: Roboto,Helvetica,Arial,sans-serif;
     color: #333;
+    /* background-color: black; */
     font-weight: 300;
-    /* background: url('../img/body-content-bg.jpg'); */
+    /* background: url('../app/assets/img/body-content-bg.jpg') 60% 0 repeat-y; */
+    background: url('../app/assets/img/hearth-bg.jpg');
     position: relative;
+}
+
+.content-container{
+    background: url('../app/assets/img/body-content-bg.jpg') 60% 0 repeat-y;
 }
 
 /* Navigation Bar */

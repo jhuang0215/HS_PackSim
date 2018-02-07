@@ -28,6 +28,7 @@ class PackOpen extends React.Component{
                                 <li key={index} className="card-slot">
                                     <div className="card-back">
                                         <img src="http://wow.zamimg.com/images/hearthstone/backs/original/Card_Back_Legend.png"/>
+                                        {/* <img src="./app/assets/img/body-content-bg.jpg"/> */}
                                     </div>
                                     <div className="card-front" >
                                         <img src={card.img} />

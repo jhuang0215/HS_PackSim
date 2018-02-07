@@ -1,4 +1,5 @@
 const React = require('react');
+import {Collapse} from 'react-collapse';
 
 class Form extends React.Component {
     constructor(props){
