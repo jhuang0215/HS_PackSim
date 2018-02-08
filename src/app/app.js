@@ -117,7 +117,7 @@ class HearthPacks extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="main-wrapper">
                 <nav id="top" className="navbar">
                     <div className="container">
                         <div className="navbar-header">                           
@@ -140,9 +140,33 @@ class HearthPacks extends React.Component {
                     </div>
                 </nav>
                 <div className="container content-container">
+                    <div className="container introduction">
+                        <h3>Hello!</h3>
+                        <p>
+                            Welcome to HeathPack, where you can open up Heathstone packs to test your luck! You can choose to customize the content
+                            in the packs to your liking. If you only want cards from your favorite class, you can choose to do that. Or if you feel
+                            unlucky and want only Legendary cards, you can do that as well! You can mix and match the attributes to your will! With
+                            that said, happy drawing!
+                        </p>
+                    </div>
                     <Form clickHandler={this.formInputHandler.bind(this)}/>
                     <PackOpen cardList={this.state.cardList} />
-                </div>                
+                </div>
+                <div id="footerwrap">
+                    <div className="container">
+                        <div className="row centered">
+                            <div className="col-lg-4">
+                                <p>jackhuangxl@gmail.com</p>
+                            </div>
+                            <div className="col-lg-4">
+                                <p>Vancouver, BC</p>
+                            </div>
+                            <div className="col-lg-4">
+                                <p>(778)-829-4638</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

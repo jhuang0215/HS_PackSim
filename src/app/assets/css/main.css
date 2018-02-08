@@ -1,4 +1,4 @@
-body {
+html, body {
     font-family: Roboto,Helvetica,Arial,sans-serif;
     color: #333;
     /* background-color: black; */
@@ -6,9 +6,13 @@ body {
     /* background: url('../app/assets/img/body-content-bg.jpg') 60% 0 repeat-y; */
     background: url('../app/assets/img/hearth-bg.jpg');
     position: relative;
+    height: 100%;
 }
 
-#hearthpack-wrapper {
+#hearthpacks-wrapper {
+    height: 100%;
+}
+.main-wrapper {
     height: 100%;
 }
 
@@ -126,6 +130,11 @@ body {
     border-color: rgba(0,0,0,0.2);
 }
 
+.introduction {
+    padding: 30px;
+    padding-bottom: 0px;
+}
+
 /* Form Select */
 .hearthpack-form{
     display: block;
@@ -136,7 +145,6 @@ body {
     border-radius: 0%;
     text-align: center;
     /* background-color: #251d18; */
-    box-shadow: 0 0 12px rgba(0,0,0,.4);
     border: 0;
 }
 .select-box {
@@ -175,7 +183,6 @@ body {
     overflow: hidden;
 }
 .pack-topper {
-    margin-top: 10px;
     padding-left: 15px;
     color: #fff;
     font-size: 20px;
@@ -208,6 +215,16 @@ li.card-slot {
     height: 185px;
     float: left;
     cursor: pointer;
+}
+
+#footerwrap {
+    padding-top: 70px;
+    padding-bottom: 50px;
+    background-color: #2f2f2f;
+}
+#footerwrap p {
+    color: #f2f2f2;
+    margin-left: 10px;
 }
 
 /* .container {

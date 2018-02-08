@@ -123,8 +123,7 @@ class Form extends React.Component {
                         {this.classList.map((item, index) => {
                             return(
                                 <a key={item.name} className="dropdown-item" href="#" onClick={() => this.handleToggle(item, 'classes')}>                            
-                                    {item.name}
-                                    <input type="checkbox" value={item.name} />
+                                    {this.state.formInput.classes[item.name] ? <div className="opaque-label">{item.name}</div> : item.name}
                                 </a>
                             );
                         })}
@@ -138,8 +137,7 @@ class Form extends React.Component {
                         {this.raceList.map((item, index) => {
                             return(
                                 <a key={item.name} className="dropdown-item" href="#" onClick={() => this.handleToggle(item, 'races')}>                            
-                                    {item.name}
-                                    <input type="checkbox" value={item.name} />
+                                    {this.state.formInput.races[item.name] ? <div className="opaque-label">{item.name}</div> : item.name}
                                 </a>
                             );
                         })}
@@ -153,8 +151,7 @@ class Form extends React.Component {
                         {this.qualityList.map((item, index) => {
                             return(
                                 <a key={item.name} className="dropdown-item" href="#" onClick={() => this.handleToggle(item, 'qualities')}>                            
-                                    {item.name}
-                                    <input type="checkbox" value={item.name} />
+                                    {this.state.formInput.qualities[item.name] ? <div className="opaque-label">{item.name}</div> : item.name}
                                 </a>
                             );
                         })}
@@ -168,8 +165,7 @@ class Form extends React.Component {
                         {this.typeList.map((item, index) => {
                             return(
                                 <a key={item.name} className="dropdown-item" href="#" onClick={() => this.handleToggle(item, 'types')}>                            
-                                    {item.name}
-                                    <input type="checkbox" value={item.name} />
+                                    {this.state.formInput.types[item.name] ? <div className="opaque-label">{item.name}</div> : item.name}
                                 </a>
                             );
                         })}

@@ -12,9 +12,12 @@ class PackOpen extends React.Component{
         }
     }
 
+    componentWillMount() {
+        this.getRandomCards();
+    }
+
     // Custom function 
     flip(index) {
-        console.log(index);
         let isFlipped = this.state.flipped;
         isFlipped[index] = true;
         this.setState({flipped: isFlipped});
@@ -25,8 +28,6 @@ class PackOpen extends React.Component{
         let randomNumber = 0;
         for(let i = 0; i < 5; i++){
             randomNumber = Math.floor(Math.random() * this.props.cardList.length);
-            console.log(this.props.cardList.length);
-            console.log(randomNumber);
             randomPack.push(this.props.cardList[randomNumber]);
             isFlipped.push(false);
         }
@@ -42,7 +43,7 @@ class PackOpen extends React.Component{
                 <div className="packsim-container">
                     <div className="packsim-wrapper">
                         <div className="pack-topper">
-                            <button type="button" onClick={() => this.getRandomCards()}>Click Me</button>
+                            <button type="button" className="btn btn-danger " onClick={() => this.getRandomCards()}>New Pack</button>
                         </div>
                         <div className="pack-wrapper">
                             <ul className="pack-results">

@@ -32,11 +32,11 @@
   }
   .flipper-container > div.flipper .front {
     z-index: 2;
-    background: #19489E;
+    /* background: #19489E; */
     /* front tile styles go here! */
   }
   .flipper-container > div.flipper .back {
-    background: #9E1919;
+    /* background: #9E1919; */
     /* back tile styles go here! */
   }
   .flipper-container > div.flipper .front img {
