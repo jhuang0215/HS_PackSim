@@ -145,8 +145,8 @@ class HearthPacks extends React.Component {
                         <p>
                             Welcome to HeathPack, where you can open up Heathstone packs to test your luck! You can choose to customize the content
                             in the packs to your liking. If you only want cards from your favorite class, you can choose to do that. Or if you feel
-                            unlucky and want only Legendary cards, you can do that as well! You can mix and match the attributes to your will! With
-                            that said, happy drawing!
+                            unlucky and want only Legendary cards, you can do that as well! You can mix and match any numbers of attributes to your 
+                            will! With that said, happy drawing!
                         </p>
                     </div>
                     <Form clickHandler={this.formInputHandler.bind(this)}/>
