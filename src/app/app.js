@@ -9,6 +9,7 @@ const config = require('./config.js');
 
 // Module require
 const Form = require('./form.js');
+const PackOpen = require('./packOpen.js');
 
 //Create component
 class HearthPacks extends React.Component {
@@ -22,7 +23,9 @@ class HearthPacks extends React.Component {
                 races: {},
                 sets: {}
             },
-            cardList: []
+            cardList: [{
+                img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/CS2_231.png",
+            }]
         };
         
         // This is to read the json objects returned from API call
@@ -50,17 +53,29 @@ class HearthPacks extends React.Component {
     filterCardResults(cardResults, paramList, paramkeys){
         let mergedResult = [].concat.apply([], cardResults);
         console.log(mergedResult);
-        let filtertedResult = mergedResult.filter(card => {
-            for(let i = 0; i < paramList.length; i++){
-                for(let j = 0; j < paramList[i].length; j++){
-                    if(card[paramkeys[i]] !== paramList[i][j]){
-                        return false;
+
+        // filter the results to be inclusive for parameters in the same category and exclusive to the rest of the parameters
+        // ex. first filter and look for anything with Epic and Legendary, then look for any Hunter and Mage...
+        let filteredResult = mergedResult;
+        for(let i = 0; i < paramList.length; i++){
+            if(paramList[i].length > 0) {
+                filteredResult = filteredResult.filter(card => {
+                    for(let j = 0; j < paramList[i].length; j++){
+                        if(card[paramkeys[i]] === paramList[i][j]){
+                            return true;
+                        }
                     }
-                }
-            }
-            return true;
-        });
-        this.setState({cardList: filtertedResult});
+                    return false;
+                });
+           }
+        }
+        
+        if(filteredResult.length === 0){
+            filteredResult.push({
+                img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/CS2_231.png",
+            });
+        }
+        this.setState({cardList: filteredResult});
     }
 
     callAPI(){        
@@ -102,7 +117,7 @@ class HearthPacks extends React.Component {
 
     render() {
         return(
-            <div>
+            <div className="main-wrapper">
                 <nav id="top" className="navbar">
                     <div className="container">
                         <div className="navbar-header">                           
@@ -124,9 +139,34 @@ class HearthPacks extends React.Component {
                         </div>                        
                     </div>
                 </nav>
-                <div className="container">
+                <div className="container content-container">
+                    <div className="container introduction">
+                        <h3>Hello!</h3>
+                        <p>
+                            Welcome to HeathPack, where you can open up Heathstone packs to test your luck! You can choose to customize the content
+                            in the packs to your liking. If you only want cards from your favorite class, you can choose to do that. Or if you feel
+                            unlucky and want only Legendary cards, you can do that as well! You can mix and match any numbers of attributes to your 
+                            will! With that said, happy drawing!
+                        </p>
+                    </div>
                     <Form clickHandler={this.formInputHandler.bind(this)}/>
-                </div>                
+                    <PackOpen cardList={this.state.cardList} />
+                </div>
+                <div id="footerwrap">
+                    <div className="container">
+                        <div className="row centered">
+                            <div className="col-lg-4">
+                                <p>jackhuangxl@gmail.com</p>
+                            </div>
+                            <div className="col-lg-4">
+                                <p>Vancouver, BC</p>
+                            </div>
+                            <div className="col-lg-4">
+                                <p>(778)-829-4638</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         );
     }

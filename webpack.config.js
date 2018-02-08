@@ -6,30 +6,60 @@ const path = require('path');
 
 module.exports = {
 
-    entry: path.resolve(__dirname, 'src') + '/app/app.js',
+    entry: ["./src/app/app.js"],
     output: {
         path: path.resolve(__dirname, 'dist') + '/app',
         filename: 'bundle.js',
         publicPath: '/app/'
     },
     module: {
-        loaders: [
+        rules: [
             {
                 test: /\.js$/,
                 include: path.resolve(__dirname, 'src'),
-                loader: 'babel-loader',
-                query: {
-                    presets: ['react', 'env']
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['env', 'react']
+                    }
                 }
             },
             {
                 test: /\.css$/,
-                loader: 'style-loader!css-loader'
+                use: [
+                    { loader: "style-loader" },
+                    { 
+                        loader: "css-loader",
+                        options: {
+                            url: false
+                        }
+                    }
+                ]
             },
             {
                 test: /\.json$/,
-                loader: 'json-loader'
-            }            
+                use: 'json-loader'
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                  {
+                    loader: 'file-loader',
+                    options: {}  
+                  }
+                ]
+            },
+            {
+                test: /\.(png|jpg|gif)$/,
+                use: [
+                  {
+                    loader: 'url-loader',
+                    options: {
+                      limit: 8192
+                    }
+                  }
+                ]
+            }
         ]
     },
     node: {

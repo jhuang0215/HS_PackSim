@@ -1,6 +1,5 @@
 const React = require('react');
-
-
+import {Collapse} from 'react-collapse';
 
 class Form extends React.Component {
     constructor(props){
@@ -100,73 +99,81 @@ class Form extends React.Component {
     render(){
         return(
             <div className="hearthpack-form">
-                <div>
-                    Sets
-                    <div>
+                <div className="dropdown select-box">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Sets
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         {this.setList.map((item, index) => {
                             return(
-                                <div key={item.name}>                                
-                                    {item.name}
-                                    <input type="checkbox" value={item.name} onClick={() => this.handleToggle(item, 'sets')}/>
-                                </div>
+                                <a key={item.name} className="dropdown-item" href="#" onClick={() => this.handleToggle(item, 'sets')}>                            
+                                    {/* {item.name} */}
+                                    {/* {this.state.formInput.sets[item.name] ? <img className="select-background" src="./app/assets/img/check-mark.png"/> : null} */}
+                                    {this.state.formInput.sets[item.name] ? <div className="opaque-label">{item.name}</div> : item.name}
+                                </a>
                             );
                         })}
                     </div>
                 </div>
-                <div>
-                    Classes
-                    <div>
+                <div className="dropdown select-box">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Classes
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         {this.classList.map((item, index) => {
                             return(
-                                <div key={item.name}>                                
-                                    {item.name}
-                                    <input type="checkbox" value={item.name} onClick={() => this.handleToggle(item, 'classes')}/>
-                                </div>
+                                <a key={item.name} className="dropdown-item" href="#" onClick={() => this.handleToggle(item, 'classes')}>                            
+                                    {this.state.formInput.classes[item.name] ? <div className="opaque-label">{item.name}</div> : item.name}
+                                </a>
                             );
                         })}
                     </div>
                 </div>
-                <div>
-                    Races
-                    <div>
+                <div className="dropdown select-box">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Races
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         {this.raceList.map((item, index) => {
                             return(
-                                <div key={item.name}>                                
-                                    {item.name}
-                                    <input type="checkbox" value={item.name} onClick={() => this.handleToggle(item,'races')}/>
-                                </div>
+                                <a key={item.name} className="dropdown-item" href="#" onClick={() => this.handleToggle(item, 'races')}>                            
+                                    {this.state.formInput.races[item.name] ? <div className="opaque-label">{item.name}</div> : item.name}
+                                </a>
                             );
                         })}
                     </div>
                 </div>
-                <div>
-                    Qualities
-                    <div>
+                <div className="dropdown select-box">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Qualities
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         {this.qualityList.map((item, index) => {
                             return(
-                                <div key={item.name}>                                
-                                    {item.name}
-                                    <input type="checkbox" value={item.name} onClick={() => this.handleToggle(item, 'qualities')}/>
-                                </div>
+                                <a key={item.name} className="dropdown-item" href="#" onClick={() => this.handleToggle(item, 'qualities')}>                            
+                                    {this.state.formInput.qualities[item.name] ? <div className="opaque-label">{item.name}</div> : item.name}
+                                </a>
                             );
                         })}
                     </div>
                 </div>
-                <div>
-                    Types
-                    <div>
+                <div className="dropdown select-box">
+                    <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Types
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
                         {this.typeList.map((item, index) => {
                             return(
-                                <div key={item.name}>                                
-                                    {item.name}
-                                    <input type="checkbox" value={item.name} onClick={() => this.handleToggle(item, 'types')}/>
-                                </div>
+                                <a key={item.name} className="dropdown-item" href="#" onClick={() => this.handleToggle(item, 'types')}>                            
+                                    {this.state.formInput.types[item.name] ? <div className="opaque-label">{item.name}</div> : item.name}
+                                </a>
                             );
                         })}
                     </div>
                 </div>
-                <div>
-                    <button type="button" onClick={() => this.props.clickHandler(this.state.formInput)}>Save</button>
+                
+                <div className="submit-button">
+                    <button type="button" className="btn btn-success" onClick={() => this.props.clickHandler(this.state.formInput)}>Submit</button>
                 </div>
             </div>
         );

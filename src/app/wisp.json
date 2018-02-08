@@ -1,0 +1,19 @@
+    {
+        "cardId": "CS2_231",
+        "dbfId": "179",
+        "name": "Wisp",
+        "cardSet": "Classic",
+        "type": "Minion",
+        "faction": "Neutral",
+        "rarity": "Common",
+        "cost": 0,
+        "attack": 1,
+        "health": 1,
+        "flavor": "If you hit an Eredar Lord with enough Wisps, it will explode.   But why?",
+        "artist": "Malcolm Davis",
+        "collectible": true,
+        "playerClass": "Neutral",
+        "img": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/CS2_231.png",
+        "imgGold": "http://media.services.zam.com/v1/media/byName/hs/cards/enus/animated/CS2_231_premium.gif",
+        "locale": "enUS"
+    }
