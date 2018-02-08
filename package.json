@@ -5,8 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run build",
-    "build": "webpack -d && webpack-dev-server --content-base src/ --inline --hot --port 1234"
+    "dev": "npm run build",
+    "build": "webpack -d && webpack-dev-server --content-base src/ --inline --hot --port 1234",
+    "postinstall": "webpack -p",
+    "start": "cd src && node server.js"
   },
   "repository": {
     "type": "git",
@@ -19,11 +21,13 @@
   },
   "homepage": "https://github.com/jhuang0215/HS_PackSim#readme",
   "dependencies": {
+    "express": "^4.16.2",
     "react": "^16.2.0",
     "react-collapse": "^4.0.3",
     "react-dom": "^16.2.0",
     "react-motion": "^0.5.2",
-    "unirest": "^0.5.1"
+    "unirest": "^0.5.1",
+    "webpack": "^3.10.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
@@ -35,7 +39,6 @@
     "json-loader": "^0.5.7",
     "style-loader": "^0.20.1",
     "url-loader": "^0.6.2",
-    "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
   }
 }

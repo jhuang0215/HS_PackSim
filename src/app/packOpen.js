@@ -1,4 +1,6 @@
 const React = require('react');
+const path = require('path');
+//import cardBack from "/app/assets/img/Card_Back_Legend.png";
 
 // Module require
 const Flipper = require('./flipper.js');

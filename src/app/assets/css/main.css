@@ -4,7 +4,8 @@ html, body {
     /* background-color: black; */
     font-weight: 300;
     /* background: url('../app/assets/img/body-content-bg.jpg') 60% 0 repeat-y; */
-    background: url('../app/assets/img/hearth-bg.jpg');
+    /* background: url('./../img/hearth-bg.jpg'); */
+    background: url("../app/assets/img/hearth-bg.jpg");
     position: relative;
     height: 100%;
 }
@@ -17,7 +18,7 @@ html, body {
 }
 
 .content-container{
-    background: url('../app/assets/img/body-content-bg.jpg') 60% 0 repeat-y;
+    background: url("../app/assets/img/body-content-bg.jpg") 60% 0 repeat-y;
     height: 100%;
 }
 

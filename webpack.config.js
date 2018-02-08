@@ -8,9 +8,9 @@ module.exports = {
 
     entry: ["./src/app/app.js"],
     output: {
-        path: path.resolve(__dirname, 'dist') + '/app',
+        path: path.resolve(__dirname, 'src', 'dist') + '/app',
         filename: 'bundle.js',
-        publicPath: '/app/'
+        publicPath: '/'
     },
     module: {
         rules: [
@@ -44,8 +44,11 @@ module.exports = {
                 test: /\.(png|jpg|gif)$/,
                 use: [
                   {
-                    loader: 'file-loader',
-                    options: {}  
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8000, // Convert images < 8kb to base64 strings
+                        name: 'images/[hash]-[name].[ext]'
+                    }
                   }
                 ]
             },
@@ -53,10 +56,8 @@ module.exports = {
                 test: /\.(png|jpg|gif)$/,
                 use: [
                   {
-                    loader: 'url-loader',
-                    options: {
-                      limit: 8192
-                    }
+                    loader: 'file-loader',
+                    options: {}  
                   }
                 ]
             }
