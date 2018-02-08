@@ -1,35 +1,39 @@
 const React = require('react');
 
+// Module require
+const Flipper = require('./flipper.js');
+
 class PackOpen extends React.Component{
     constructor(props){
         super(props);
         this.state = {
-            packResult: [
-                {
-                    img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/CS2_231.png",
-                }, 
-                {
-                    img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/CS2_231.png",
-                }, 
-                {
-                    img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/CS2_231.png",
-                }, 
-                {
-                    img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/CS2_231.png",
-                }, 
-                {
-                    img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/CS2_231.png",
-            }]
+            packResult: [],
+            flipped: []
         }
     }
 
     // Custom function 
+    flip(index) {
+        console.log(index);
+        let isFlipped = this.state.flipped;
+        isFlipped[index] = true;
+        this.setState({flipped: isFlipped});
+    }
+
     getRandomCards(){
-        let randomPack = [];
+        let randomPack = [], isFlipped = [];
+        let randomNumber = 0;
         for(let i = 0; i < 5; i++){
-            randomPack.push(this.props.cardList[Math.floor(Math.random() * this.props.cardList.length)]);
+            randomNumber = Math.floor(Math.random() * this.props.cardList.length);
+            console.log(this.props.cardList.length);
+            console.log(randomNumber);
+            randomPack.push(this.props.cardList[randomNumber]);
+            isFlipped.push(false);
         }
-        this.setState({packResult: randomPack});
+        this.setState({
+            packResult: randomPack,
+            flipped: isFlipped
+        });
     }
 
     render(){
@@ -44,14 +48,8 @@ class PackOpen extends React.Component{
                             <ul className="pack-results">
                                 {this.state.packResult.map((card, index) => {
                                     return(
-                                        <li key={index} className="card-slot">
-                                            <div className="card-back">
-                                                <img src="http://wow.zamimg.com/images/hearthstone/backs/original/Card_Back_Legend.png"/>
-                                                {/* <img src="./app/assets/img/body-content-bg.jpg"/> */}
-                                            </div>
-                                            <div className="card-front" >
-                                                <img src={card.img} />
-                                            </div>
+                                        <li key={index} className="card-slot" onClick={() => this.flip(index)}>
+                                            <Flipper flipped={this.state.flipped[index]} front="/app/assets/img/Card_Back_Legend.png" back={card.img}/>
                                         </li>
                                     );
                                 })}

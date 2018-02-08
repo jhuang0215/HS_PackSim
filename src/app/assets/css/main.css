@@ -165,11 +165,14 @@ body {
     margin-right: auto;
     display: block;
     position: relative;
-    padding: 10px
+    padding: 10px;
+    overflow: auto;
 }
 .packsim-wrapper {
     background: url('../app/assets/img/packsim-bg.png');
     border-radius: 10px;
+    display: block;
+    overflow: hidden;
 }
 .pack-topper {
     margin-top: 10px;
@@ -182,22 +185,27 @@ body {
     font-family: 'Open Sans Condensed',sans-serif;
     font-weight: bold;
 }
-
+.pack-wrapper {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    padding-bottom: 20px;
+}
 .pack-results {
+    display: flex;
     padding: 30px 15px;
     list-style: none;
     list-style-image: none;
     margin: 0;
-
 }
-
 ul.pack-results li.card-slot:not(:last-child) {
-    margin-right: 20px;
+    margin-right: 10px;
 }
 li.card-slot {
-    /* position: relative; */
-    width: 170px;
-    height: 240px;
+    flex-grow: 1;
+    position: relative;
+    width: 120px;
+    height: 185px;
     float: left;
     cursor: pointer;
 }
@@ -214,19 +222,23 @@ li.card-slot {
     display: block;
 }  */
 
-/* Media Queries
-@media (min-width: 1200px){
-    .container{
-        width: 1170px;
+/* Media Queries */
+@media (min-width: 768px){
+    li.card-slot{
+        width: 120px;
+        height: 185px;
     }
 }
 @media (min-width: 992px){
-    .container{
-        width: 970px;
+    li.card-slot{
+        width: 170px;
+        height: 240px;
     }
 }
-@media (min-width: 768px){
-    .container{
-        width: 750px;    
+@media (min-width: 1200px){
+    li.card-slot{
+        width: 170px;
+        height: 240px;
     }
-} */
+}
+

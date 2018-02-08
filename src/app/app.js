@@ -23,7 +23,9 @@ class HearthPacks extends React.Component {
                 races: {},
                 sets: {}
             },
-            cardList: []
+            cardList: [{
+                img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/CS2_231.png",
+            }]
         };
         
         // This is to read the json objects returned from API call
@@ -51,17 +53,29 @@ class HearthPacks extends React.Component {
     filterCardResults(cardResults, paramList, paramkeys){
         let mergedResult = [].concat.apply([], cardResults);
         console.log(mergedResult);
-        let filtertedResult = mergedResult.filter(card => {
-            for(let i = 0; i < paramList.length; i++){
-                for(let j = 0; j < paramList[i].length; j++){
-                    if(card[paramkeys[i]] !== paramList[i][j]){
-                        return false;
+
+        // filter the results to be inclusive for parameters in the same category and exclusive to the rest of the parameters
+        // ex. first filter and look for anything with Epic and Legendary, then look for any Hunter and Mage...
+        let filteredResult = mergedResult;
+        for(let i = 0; i < paramList.length; i++){
+            if(paramList[i].length > 0) {
+                filteredResult = filteredResult.filter(card => {
+                    for(let j = 0; j < paramList[i].length; j++){
+                        if(card[paramkeys[i]] === paramList[i][j]){
+                            return true;
+                        }
                     }
-                }
-            }
-            return true;
-        });
-        this.setState({cardList: filtertedResult});
+                    return false;
+                });
+           }
+        }
+        
+        if(filteredResult.length === 0){
+            filteredResult.push({
+                img: "http://media.services.zam.com/v1/media/byName/hs/cards/enus/CS2_231.png",
+            });
+        }
+        this.setState({cardList: filteredResult});
     }
 
     callAPI(){        
