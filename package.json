@@ -5,10 +5,10 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npm run build",
+    "start": "npm run build",
     "build": "webpack -d && webpack-dev-server --content-base src/ --inline --hot --port 1234",
     "postinstall": "webpack -p",
-    "start": "cd src && node server.js"
+    "deploy-start": "cd src && node server.js"
   },
   "repository": {
     "type": "git",
