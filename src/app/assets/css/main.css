@@ -1,25 +1,31 @@
 html, body {
     font-family: Roboto,Helvetica,Arial,sans-serif;
     color: #333;
-    /* background-color: black; */
     font-weight: 300;
-    /* background: url('../app/assets/img/body-content-bg.jpg') 60% 0 repeat-y; */
-    /* background: url('./../img/hearth-bg.jpg'); */
     background: url("../app/assets/img/hearth-bg.jpg");
-    position: relative;
+    margin: 0;
+    padding: 0;
     height: 100%;
 }
 
 #hearthpacks-wrapper {
-    height: 100%;
+    min-height: 100%;
+    position: relative;
 }
 .main-wrapper {
     height: 100%;
+    display: block;
 }
+#hearthpacks-wrapper:after{
+    clear: both;
+    content: "";
+    display: block;
+} 
 
-.content-container{
+#body {
+    padding:10px;
+    padding-bottom:160px;   /* Height of the footer */
     background: url("../app/assets/img/body-content-bg.jpg") 60% 0 repeat-y;
-    height: 100%;
 }
 
 /* Navigation Bar */
@@ -131,6 +137,9 @@ html, body {
     border-color: rgba(0,0,0,0.2);
 }
 
+
+/* body */
+
 .introduction {
     padding: 30px;
     padding-bottom: 0px;
@@ -175,13 +184,13 @@ html, body {
     display: block;
     position: relative;
     padding: 10px;
-    overflow: auto;
+    /* overflow: auto; */
 }
 .packsim-wrapper {
     background: url('../app/assets/img/packsim-bg.png');
     border-radius: 10px;
     display: block;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 .pack-topper {
     padding-left: 15px;
@@ -196,7 +205,7 @@ html, body {
 .pack-wrapper {
     position: relative;
     text-align: center;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding-bottom: 20px;
 }
 .pack-results {
@@ -219,8 +228,13 @@ li.card-slot {
 }
 
 #footerwrap {
-    padding-top: 70px;
-    padding-bottom: 50px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    max-height: 60px;
+    padding-top: 60px;
+    padding-bottom: 60px;
+    
     background-color: #2f2f2f;
 }
 #footerwrap p {
@@ -234,11 +248,7 @@ li.card-slot {
     margin-right: auto;
     margin-left: auto;    
 }
-.container:after{
-    clear: both;
-    content: "";
-    display: block;
-}  */
+ */
 
 /* Media Queries */
 @media (min-width: 768px){
